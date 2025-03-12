@@ -1,4 +1,3 @@
-```markdown
 # Shadow Cannon
 
 **Shadow Cannon** is a strategic game based on physics and precision, developed in Python using the Kivy framework. The game was created by **Claudia Maria Carboni (535421)** and **Susanna Mazzocchi (535996)** as a project for the Programming for Artificial Intelligence course.
@@ -83,4 +82,3 @@ All content in this repository, including code, images, and sounds, is protected
 ---
 
 **Enjoy playing Shadow Cannon!** 🎮
-```
