@@ -1,0 +1,150 @@
+<Level1Game>:
+    name: 'level1game'
+    FloatLayout:
+        canvas.before:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: "images/level1.png"
+
+        Label:
+            text: "LEVEL 1"
+            font_size: '24sp'
+            color: 0.8, 0, 0, 1  # Rosso Scuro
+            size_hint: (None, None)
+            size: self.texture_size
+            pos_hint: {'center_x': 0.5, 'top': 1}
+            bold: True
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 0.6
+                Rectangle:
+                    pos: self.x - 10, self.y - 5
+                    size: self.width + 20, self.height + 10
+
+        # Timer Label
+        Label:
+            id: timer_label
+            text: "00:00"
+            font_size: '30sp'
+            color: 1, 1, 1, 1  # Bianco
+            size_hint: (None, None)
+            size: self.texture_size
+            pos_hint: {'right': 0.98, 'top': 0.98}
+            bold: True
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 0.2
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        # Number of Shots
+        Label:
+            id: shots_label
+            text: "Number of shots: 15/15"
+            font_size: '20sp'
+            color: 0.8, 0, 0, 1  # Rosso Scuro
+            size_hint: (None, None)
+            size: self.texture_size
+            pos_hint: {'right': 0.84, 'top': 0.98}
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 0.6
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        # Menu button sotto il timer
+        Button:
+            text: "MENU"
+            size_hint: (0.1, 0.05)
+            pos_hint: {'right': 0.98, 'top': 0.92}  # Posizionato sotto il timer
+            background_color: 0.8, 0, 0, 1  # Rosso scuro
+            on_press: root.manager.current = 'mainmenu'
+
+        # Cannon widget
+        CannonLevel1:
+            id: cannon
+            size_hint: (None, None)
+            size: 400, 400
+            pos_hint: {'x': 0.0, 'y': 0.0}
+
+        Button:
+            text: "Fire!"
+            size_hint: (0.2, 0.05)
+            pos_hint: {"x": 0.0, "y": 0.55}
+            background_color: 0.8, 0, 0, 1  # Rosso scuro
+            on_press: root.ids.cannon.shoot()
+
+        Label:
+            text: "Enter Velocity:"
+            font_size: '18sp'
+            color: 1, 1, 1, 1
+            bold: True
+            size_hint: (0.2, 0.05)
+            pos_hint: {"x": 0.0, "y": 0.9}
+            text_size: self.size
+            halign: "center"
+            valign: "middle"
+
+        TextInput:
+            id: velocity
+            multiline: False
+            size_hint: (0.2, 0.05)
+            pos_hint: {"x": 0.0, "y": 0.85}
+
+        Button:
+            text: "Submit Velocity"
+            size_hint: (0.2, 0.05)
+            pos_hint: {"x": 0.0, "y": 0.8}
+            background_color: 0.8, 0, 0, 1  # Rosso scuro
+            on_press: root.ids.cannon.set_velocity(root.ids.velocity.text)
+
+        Label:
+            text: "Enter Angle:"
+            font_size: '18sp'
+            color: 1, 1, 1, 1
+            bold: True
+            size_hint: (0.2, 0.05)
+            pos_hint: {"x": 0.0, "y": 0.7}
+            text_size: self.size
+            halign: "center"
+            valign: "middle"
+
+        TextInput:
+            id: angle
+            multiline: False
+            size_hint: (0.2, 0.05)
+            pos_hint: {"x": 0.0, "y": 0.65}
+
+        Button:
+            text: "Submit Angle"
+            size_hint: (0.2, 0.05)
+            pos_hint: {"x": 0.0, "y": 0.6}
+            background_color: 0.8, 0, 0, 1  # Rosso scuro
+            on_press: root.ids.cannon.set_angle(root.ids.angle.text)
+
+
+<PerpetuoErrorPopup@Popup>:
+    title: "This rock is indestructible!"
+    title_align: 'center'
+    title_size: 30
+    title_color: 0.8, 0, 0, 1  # Rosso scuro
+    size_hint: None, None
+    size: 500, 300
+    background: 'images/popup.png'
+    auto_dismiss: False
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 20
+
+        Button:
+            text: "Try Again"
+            size_hint: 1, 0.4
+            font_size: 24
+            background_color: 0.8, 0, 0, 1  # Rosso scuro
+            color: 1, 1, 1, 1  # Bianco
+            on_press: root.dismiss()

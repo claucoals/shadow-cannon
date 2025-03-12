@@ -1,0 +1,498 @@
+<MainMenu>:
+    name: "mainmenu"
+    FloatLayout:
+        canvas.before:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: "images/menu.png"
+
+        Label:
+            text: "Shadow Cannon"
+            font_size: "48sp"
+            color: 0.2, 0.2, 0.3, 1  # Blu scuro
+            size_hint: (None, None)
+            size: self.texture_size
+            pos_hint: {'center_x': 0.5, 'top': 0.95}
+            bold: True
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 0.4
+                Rectangle:
+                    pos: self.x - 10, self.y - 5
+                    size: self.width + 20, self.height + 10
+
+        BoxLayout:
+            orientation: "vertical"
+            size_hint: (0.4, 0.5)
+            pos_hint: {"center_x": 0.5, "center_y": 0.45}
+            spacing: 20
+            padding: 20
+            Button:
+                text: "Play"
+                background_normal: ""
+                background_color: 0.3, 0.3, 0.4, 0.9
+                bold: True
+                on_release: root.manager.current = "levelselection"
+            Button:
+                text: "Hall of Fame"
+                background_normal: ""
+                background_color: 0.3, 0.3, 0.4, 0.9
+                bold: True
+                on_release: root.manager.current = "halloffame"
+            Button:
+                text: "Help"
+                background_normal: ""
+                background_color: 0.3, 0.3, 0.4, 0.9
+                bold: True
+                on_release: root.manager.current = "help"
+            Button:
+                text: "Exit"
+                background_normal: ""
+                background_color: 0.3, 0.3, 0.4, 0.9
+                bold: True
+                on_release: app.stop()
+
+<LevelSelection>:
+    name: "levelselection"
+    BoxLayout:
+        orientation: 'vertical'
+        canvas.before:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: 'images/menu2.png'
+
+        Label:
+            text: 'Select Level'
+            font_size: "40sp"
+            color: 0.2, 0.2, 0.3, 1
+            size_hint: (None, None)
+            size: self.texture_size
+            pos_hint: {'center_x': 0.5, 'top': 0.85}
+            bold: True
+            size_hint_y: 0.2
+
+        GridLayout:
+            cols: 2
+            size_hint: (0.4, 0.4)
+            pos_hint: {"center_x": 0.5, "center_y": 0.45}
+            spacing: 20
+            padding: 30
+
+            Button:
+                text: 'Level 1\nHell'
+                font_size: '24sp'
+                background_color: 0.6, 0.3, 0.2, 0.85
+                on_press: app.root.current = 'level1game'
+
+            Button:
+                text: 'Level 2\nAbyss'
+                font_size: '24sp'
+                background_color: 0.2, 0.6, 0.3, 0.85
+                on_press: app.root.current = 'level2game'
+
+            Button:
+                text: 'Level 3\nCurse'
+                font_size: '24sp'
+                background_color: 0.3, 0.2, 0.6, 0.85
+                on_press: app.root.current = 'level3game'
+
+            Button:
+                text: 'Level 4\nSpace'
+                font_size: '24sp'
+                background_color: 0.2, 0.2, 0.8, 0.85
+                on_press: app.root.current = 'level4game'
+
+        # Pulsante Back
+        Button:
+            text: "Back to Menu"
+            size_hint: (0.2, 0.08)
+            pos_hint: {'center_x': 0.5, 'y': 0.05}
+            background_color: 0.2, 0.2, 0.3, 0.9
+            bold: True
+            on_press: root.manager.current = 'mainmenu'
+
+<HallOfFame>:
+    name: "halloffame"
+    FloatLayout:
+        canvas.before:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: "images/hall_of_fame.png"
+
+        # Titolo principale
+        Label:
+            text: "HALL OF FAME"
+            font_size: "40sp"
+            color: 0.2, 0.2, 0.3, 0.9  # Blu scuro
+            size_hint: (None, None)
+            size: self.texture_size
+            pos_hint: {'center_x': 0.5, 'top': 0.95}
+            bold: True
+            canvas.before:
+                Color:
+                    rgba: 0.8, 0.5, 0, 0.4  # Mantiene lo sfondo oro semi-trasparente
+                Rectangle:
+                    pos: self.x - 10, self.y - 5
+                    size: self.width + 20, self.height + 10
+
+        # Contenitore per Level 1
+        BoxLayout:
+            orientation: "vertical"
+            size_hint: (0.2, 0.6)
+            pos_hint: {"x": 0.05, "center_y": 0.5}
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.2, 0.3, 0.9
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            Label:
+                text: "Level 1"
+                font_size: "24sp"
+                size_hint_y: 0.15
+                bold: True
+                color: 1, 0.6, 0.2, 1
+
+            ScrollView:
+                size_hint_y: 0.85
+                BoxLayout:
+                    id: level1_container
+                    orientation: "vertical"
+                    size_hint_y: None
+                    height: self.minimum_height
+                    padding: dp(10)
+                    spacing: dp(5)
+
+        # Contenitore per Level 2
+        BoxLayout:
+            orientation: "vertical"
+            size_hint: (0.2, 0.6)
+            pos_hint: {"x": 0.28, "center_y": 0.5}
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.2, 0.3, 0.9
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            Label:
+                text: "Level 2"
+                font_size: "24sp"
+                size_hint_y: 0.15
+                bold: True
+                color: 1, 0.6, 0.2, 1
+
+            ScrollView:
+                size_hint_y: 0.85
+                BoxLayout:
+                    id: level2_container
+                    orientation: "vertical"
+                    size_hint_y: None
+                    height: self.minimum_height
+                    padding: dp(10)
+                    spacing: dp(5)
+
+        # Contenitore per Level 3
+        BoxLayout:
+            orientation: "vertical"
+            size_hint: (0.2, 0.6)
+            pos_hint: {"x": 0.51, "center_y": 0.5}
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.2, 0.3, 0.9
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            Label:
+                text: "Level 3"
+                font_size: "24sp"
+                size_hint_y: 0.15
+                bold: True
+                color: 1, 0.6, 0.2, 1
+
+            ScrollView:
+                size_hint_y: 0.85
+                BoxLayout:
+                    id: level3_container
+                    orientation: "vertical"
+                    size_hint_y: None
+                    height: self.minimum_height
+                    padding: dp(10)
+                    spacing: dp(5)
+
+        # Contenitore per Level 4
+        BoxLayout:
+            orientation: "vertical"
+            size_hint: (0.2, 0.6)
+            pos_hint: {"x": 0.74, "center_y": 0.5}
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.2, 0.3, 0.9
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            Label:
+                text: "Level 4"
+                font_size: "24sp"
+                size_hint_y: 0.15
+                bold: True
+                color: 1, 0.6, 0.2, 1
+
+            ScrollView:
+                size_hint_y: 0.85
+                BoxLayout:
+                    id: level4_container
+                    orientation: "vertical"
+                    size_hint_y: None
+                    height: self.minimum_height
+                    padding: dp(10)
+                    spacing: dp(5)
+
+        # Pulsante Back
+        Button:
+            text: "Back to Menu"
+            size_hint: (0.2, 0.08)
+            pos_hint: {'center_x': 0.5, 'y': 0.05}
+            background_color: 0.2, 0.2, 0.3, 0.9
+            bold: True
+            on_press: root.manager.current = 'mainmenu'
+
+<Help>:
+    name: "help"
+    BoxLayout:
+        orientation: "vertical"
+        spacing: 30
+        padding: 30
+        canvas.before:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: "images/menu.png"
+
+        # Titolo principale con sfondo
+        Label:
+            text: "HOW TO PLAY"
+            font_size: "48sp"
+            size_hint: (0.5, 0.1)
+            pos_hint: {'center_x': 0.5}  # Centrato
+            bold: True
+            color: 1, 1, 1, 1
+
+        # Regole generali in un box dedicato
+        BoxLayout:
+            orientation: "vertical"
+            size_hint: (0.69, 0.2)  # box più stretta
+            pos_hint: {'center_x': 0.5}
+            padding: 20
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.2, 0.3, 0.7
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [15, 15]
+
+            Label:
+                text: "GENERAL RULES"
+                font_size: "24sp"
+                size_hint_y: 0.4
+                bold: True
+                color: 1, 0.8, 0.2, 1
+                text_size: self.size
+                halign: 'center'
+
+            Label:
+                text: "• Hit the target in the shortest time possible\n• Choose angle and power for Cannon/Shotgun shots\n• Laser has fixed speed, only angle can be adjusted\n• If you run out of shots, the level restarts\n• Enter the Hall of Fame with your best time!"
+                halign: "center"
+                color: 1, 1, 1, 1
+                size_hint_y: 0.6
+                text_size: self.size
+
+        # Grid per i livelli con box colorati
+        GridLayout:
+            cols: 2
+            size_hint: (0.7, 0.5) 
+            pos_hint: {'center_x': 0.5}
+            spacing: 20
+            padding: 10
+
+            # Level 1
+            BoxLayout:
+                orientation: "vertical"
+                padding: 15
+                size_hint: (0.45, 1)
+                canvas.before:
+                    Color:
+                        rgba: 0.6, 0.3, 0.2, 0.8
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [15, 15]
+
+                Label:
+                    text: "LEVEL 1 - HELL"
+                    font_size: "22sp"
+                    bold: True
+                    size_hint_y: 0.3
+                    color: 1, 0.8, 0.2, 1
+                    text_size: self.size  # Permette l'allineamento
+                    halign: 'left'  # Allinea il testo a sinistra
+
+                Label:
+                    text: "• Cannon: adjust angle & power\n• Target hidden behind rocks\n• Destroy rocks to reach target\n• Avoid indestructible Perpetuals"
+                    color: 1, 1, 1, 1
+                    size_hint_y: 0.7
+                    text_size: self.size  # Permette l'allineamento
+                    halign: 'left'  # Allinea il testo a sinistra
+
+            # Level 2
+            BoxLayout:
+                orientation: "vertical"
+                padding: 15
+                size_hint: (0.45, 1)
+                canvas.before:
+                    Color:
+                        rgba: 0.2, 0.6, 0.3, 0.8
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [15, 15]
+
+                Label:
+                    text: "LEVEL 2 - ABYSS"
+                    font_size: "22sp"
+                    bold: True
+                    size_hint_y: 0.3
+                    color: 1, 0.8, 0.2, 1
+                    text_size: self.size  # Permette l'allineamento
+                    halign: 'left'  # Allinea il testo a sinistra
+
+                Label:
+                    text: "• Shotgun: only hits bats\n• Cannon: only hits rocks\n• Don't hit the Perpetuals!\n• Strategic weapon choice is key"
+                    color: 1, 1, 1, 1
+                    size_hint_y: 0.7
+                    text_size: self.size  # Permette l'allineamento
+                    halign: 'left'  # Allinea il testo a sinistra
+
+            # Level 3
+            BoxLayout:
+                orientation: "vertical"
+                padding: 15
+                size_hint: (0.45, 1)
+                canvas.before:
+                    Color:
+                        rgba: 0.3, 0.2, 0.6, 0.8
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [15, 15]
+
+                Label:
+                    text: "LEVEL 3 - CURSE"
+                    font_size: "22sp"
+                    bold: True
+                    size_hint_y: 0.3
+                    color: 1, 0.8, 0.2, 1
+                    text_size: self.size  # Permette l'allineamento
+                    halign: 'left'  # Allinea il testo a sinistra
+
+                Label:
+                    text: "• Same as Level 2 +\n• Laser: hits target only\n• Use mirrors to reflect beam\n• Fixed laser speed"
+                    color: 1, 1, 1, 1
+                    size_hint_y: 0.7
+                    text_size: self.size  # Permette l'allineamento
+                    halign: 'left'  # Allinea il testo a sinistra
+
+            # Level 4
+            BoxLayout:
+                orientation: "vertical"
+                padding: 15
+                size_hint: (0.45, 1)
+                canvas.before:
+                    Color:
+                        rgba: 0.2, 0.2, 0.8, 0.8
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [15, 15]
+
+                Label:
+                    text: "LEVEL 4 - SPACE"
+                    font_size: "22sp"
+                    bold: True
+                    size_hint_y: 0.3
+                    color: 1, 0.8, 0.2, 1
+                    text_size: self.size  # Permette l'allineamento
+                    halign: 'left'  # Allinea il testo a sinistra
+
+                Label:
+                    text: "• Red Laser: hits target only\n• Blue Laser: hits asteroids only\n• Fixed laser speed\n• Choose your laser wisely"
+                    color: 1, 1, 1, 1
+                    size_hint_y: 0.7
+                    text_size: self.size  # Permette l'allineamento
+                    halign: 'left'  # Allinea il testo a sinistra
+
+        # Pulsante Back migliorato
+        Button:
+            text: "Back to Menu"
+            size_hint: (0.3, 0.08)
+            pos_hint: {'center_x': 0.5}  # Centrato
+            background_color: 0.2, 0.2, 0.3, 0.9
+            bold: True
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.2, 0.3, 0.9
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [10, 10]
+            on_press: root.manager.current = 'mainmenu'
+
+<IntroStory>:
+    name: "introstory"
+    FloatLayout:
+        canvas.before:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: "images/introstory.png"
+
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 20
+            padding: 20
+            size_hint: (0.8, 0.8)
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 0.7
+                Rectangle:
+                    pos: self.x - 10, self.y - 5
+                    size: self.width + 20, self.height + 10
+
+            Label:
+                markup: True
+                text: "[color=202030][b]Darkness Rises...[/b][/color]\n\n[color=2B547E]An ancient prophecy tells of a darkness that devours entire worlds, expanding from Hell to the depths of space.\n\nYou are the last Master of the Shadow Cannon, a legendary weapon forged to pierce the veil of darkness.\n\n[/color][color=202030][b]Your mission is clear:[/b][/color]\n\n[color=2B547E]Traverse three realms - from burning Hell, through cursed lands, to the depths of space.\nStrike your targets with speed and precision.\nEvery second counts in the fight against darkness.\n\n[/color][color=202030][b]Are you ready to face this challenge?[/b][/color]"
+                halign: "center"
+                valign: "middle"
+                text_size: self.size
+                font_size: '20sp'
+
+            Button:
+                text: "ACCEPT THE CHALLENGE"
+                size_hint: (0.4, None)
+                height: dp(60)
+                pos_hint: {"center_x": 0.5}
+                background_normal: ""
+                background_color: 0.2, 0.2, 0.3, 0.75  # Blu scuro
+                bold: True
+                font_size: '20sp'
+                on_release: app.root.current = "mainmenu"
+
+

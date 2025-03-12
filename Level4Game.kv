@@ -1,0 +1,109 @@
+<Level4Game>:
+    name: 'level4game'
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'images/level4.png'
+
+    CannonLevel4:
+        id: game
+        size: root.size
+
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint: None, None
+        size: dp(200), dp(100)
+        pos_hint: {'right': 0.98, 'top': 0.98}
+        spacing: dp(10)
+        padding: dp(10)
+
+        Label:
+            id: timer_label
+            text: '00:00'
+            font_size: dp(24)
+            size_hint: None, None
+            size: dp(100), dp(40)
+            pos_hint: {'right': 0.98, 'top': 0.8}
+            color: 1, 1, 1, 1
+            canvas.before:
+                Color:
+                    rgba: 0, 0, 0, 0.5
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        # Number of Shots
+        Label:
+            id: shots_label
+            text: "Number of shots: 8/8"
+            font_size: '20sp'
+            color: 1, 1, 1, 1
+            size_hint: (None, None)
+            size: self.texture_size
+            pos_hint:{'right': 0.98, 'top': 0.8}
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 0.2
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint: None, None
+        size: dp(150), dp(200)
+        pos_hint: {'right': 0.98, 'top': 0.8}
+        spacing: dp(10)
+        padding: dp(10)
+
+        Button:
+            text: 'Red Laser'
+            size_hint: None, None
+            size: dp(130), dp(50)
+            background_color: 1, 0, 0, 1
+            on_press: game.switch_weapon('laser_red')
+
+        Button:
+            text: 'Blue Laser'
+            size_hint: None, None
+            size: dp(130), dp(50)
+            background_color: 0, 0, 1, 1
+            on_press: game.switch_weapon('laser_blue')
+
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint: None, None
+        size: dp(150), dp(200)
+        pos_hint: {'x': 0.02, 'top': 0.98}
+        spacing: dp(10)
+        padding: dp(10)
+
+        Slider:
+            id: angle_slider
+            min: 0
+            max: 90
+            value: 45
+            size_hint: None, None
+            size: dp(130), dp(50)
+            on_value: game.set_angle(self.value)
+
+        Label:
+            text: 'Angle: ' + str(int(angle_slider.value))
+            size_hint: None, None
+            size: dp(130), dp(30)
+            color: 1, 1, 1, 1
+
+        Button:
+            text: 'FIRE!'
+            size_hint: None, None
+            size: dp(130), dp(50)
+            background_color: 1, 0, 0, 1
+            on_press: game.fire_cannon()
+
+        Button:
+            text: 'Menu'
+            size_hint: None, None
+            size: dp(130), dp(50)
+            background_color: 0.5, 0.5, 0.5, 1
+            on_press: app.root.current = 'mainmenu'

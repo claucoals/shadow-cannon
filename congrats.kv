@@ -1,0 +1,30 @@
+<CongratsScreen>:
+    name: 'congrats'
+    FloatLayout:
+        Image:
+            source: 'images/congratulations.png'
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: 1, 1
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint: None, None
+            size: 450, 50
+            pos_hint: {'center_x': 0.5, 'center_y': 0.15}
+            spacing: 50
+
+            Button:
+                text: 'Back to Menu'
+                size_hint: None, None
+                size: 200, 50
+                background_color: 0.2, 0.6, 1, 1
+                on_press: root.go_to_menu()
+
+            Button:
+                text: 'Exit Game'
+                size_hint: None, None
+                size: 200, 50
+                background_color: 1, 0.3, 0.3, 1
+                on_press: root.exit_game()
