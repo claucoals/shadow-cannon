@@ -1,6 +1,6 @@
 # Shadow Cannon
 
-**Shadow Cannon** is a strategic game based on physics and precision, developed in Python using the Kivy framework. The game was created by **Claudia Maria Carboni (535421)** and **Susanna Mazzocchi (535996)** as a project for the Programming for Artificial Intelligence course.
+**Shadow Cannon** is a strategic game based on physics and precision, developed in Python using the Kivy framework. The game was created by **Claudia Maria Carboni** and **Susanna Mazzocchi** as a project for the Programming course, BSc in Artificial Intelligence.
 
 ## Game Description
 
@@ -52,11 +52,6 @@ As the last Master of the Shadow Cannon, the player must navigate through four t
 - **`menu.kv`**, **`Level1Game.kv`**, etc.: KV files for defining the graphical interface.
 - **`images/`**: Directory containing the images used in the game.
 - **`sounds/`**: Directory containing the background music and sound effects.
-
-## Screenshots
-
-!Screenshot of Level 1
-!Screenshot of Level 2
 
 ## Potential Improvements
 
