@@ -68,7 +68,7 @@ As the last Master of the Shadow Cannon, the player must navigate through four t
 
 ## License
 
-This project is released under the MIT License. For more details, see the LICENSE file.
+This project is released under the GNU Affero General Public License v3.0. For more details, see the LICENSE file.
 
 ## Copyright and Copying
 
